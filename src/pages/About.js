@@ -58,7 +58,83 @@ const About = () => {
           </motion.p>
         </div>
       </section>
+<section className="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+  {/* Soft Background Glow */}
+  <div className="absolute -top-20 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
 
+  <div className="container mx-auto relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto"
+    >
+      {/* Dentist Image with Floating Effect */}
+<motion.div
+  initial={{ opacity: 0, x: -50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  className="relative"
+>
+  <motion.div
+    animate={{ y: [0, -10, 0] }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  >
+    <img
+      src="/DentistPhoto.jpeg"
+      alt="Dentist smiling"
+      className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
+    />
+  </motion.div>
+</motion.div>
+
+      {/* Quote Section */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="font-heading text-4xl md:text-5xl font-bold text-secondary mb-8 leading-tight">
+          Our Motto
+        </h2>
+
+        {/* Animated Quote */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 1 }}
+          className="text-2xl md:text-3xl font-semibold text-primary leading-relaxed italic border-l-4 border-primary pl-6"
+        >
+          <p>Eat What You Love.</p>
+          <p className="mt-2">We’ll Take Care of Your Smile.</p>
+        </motion.div>
+
+        <p className="mt-8 text-lg text-text-light leading-relaxed">
+          We believe dental care should empower you to enjoy life without
+          hesitation. Whether it’s your favorite dessert or a confident smile in
+          photos, our mission is to protect, restore, and enhance your smile
+          for life.
+        </p>
+
+        {/* CTA Button */}
+        <motion.a
+          href="/contact"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-block mt-8 bg-primary text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all font-semibold"
+        >
+          Book Your Consultation
+        </motion.a>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
       <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24">
         <div className="container mx-auto">
           <motion.div
