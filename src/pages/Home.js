@@ -128,7 +128,7 @@ const Home = () => {
                 className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-green-100 text-primary px-4 py-2 rounded-full text-sm font-semibold shadow-md mb-6"
               >
                 <motion.div animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-2 h-2 rounded-full bg-green-400" />
-                Mumbai's Most Trusted Dental Clinic
+                New Delhi's Most Trusted Dental Clinic
               </motion.div>
 
               {/* Heading */}
