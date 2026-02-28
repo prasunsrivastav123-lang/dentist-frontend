@@ -128,7 +128,7 @@ const Home = () => {
                 className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-green-100 text-primary px-4 py-2 rounded-full text-sm font-semibold shadow-md mb-6"
               >
                 <motion.div animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-2 h-2 rounded-full bg-green-400" />
-                New Delhi's Most Trusted Dental Clinic
+                Mumbai's Most Trusted Dental Clinic
               </motion.div>
 
               {/* Heading */}
@@ -302,9 +302,10 @@ const Home = () => {
 
               {/* Floating info pills */}
               {[
-                { text: '🦷 Painless', pos: 'top-6 right-4' },
-                { text: '✨ Advanced', pos: 'bottom-16 right-2' },
-                { text: '💚 Certified', pos: 'top-1/2 left-0' },
+               { text: '🦷 Painless', pos: 'top-6 right-4' },
+               { text: '✨ Advanced', pos: 'bottom-16 right-2' },
+               { text: '💚 Certified', pos: 'top-8 left-2' },
+               { text: '✈️ Nearest To Airport', pos: 'bottom-8 left-2' },
               ].map(({ text, pos }, i) => (
                 <motion.div
                   key={i}
@@ -326,7 +327,6 @@ const Home = () => {
           transition={{ delay: 2 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-primary/60"
         >
-          <span className="text-xs font-medium">Scroll to explore</span>
           <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
             <ChevronDown size={20} />
           </motion.div>
