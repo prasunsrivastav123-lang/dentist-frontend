@@ -260,40 +260,45 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
             {[
-              {
-                name: 'Dr. Niral Dedhia',
-                qualification: 'B.D.S. (M.U.H.S.), P.G.D.C.R.',
-                image: 'https://customer-assets.emergentagent.com/job_dental-design/artifacts/flyafybe_Niral%20Single.png',
-              },
-              {
-                name: 'Dr. Jesal Soneta',
-                qualification: 'B.D.S. (M.U.H.S.), A.C.T Esthetics & Restorative Dentistry (U.C.L.A. USA), Certified Implantologist (Manipal University)',
-                image: 'https://customer-assets.emergentagent.com/job_dental-design/artifacts/75zpv60h_Jesal%20Mam%20Single%20Pic.png',
-              },
+          {
+             name: 'Dr. Niral Dedhia',
+             qualification: 'B.D.S. (M.U.H.S.), P.G.D.C.R.',
+             image: '/Maledoctor.png',
+          },
+          {
+             name: 'Dr. Jesal Soneta',
+             qualification: 'B.D.S. (M.U.H.S.), A.C.T Esthetics & Restorative Dentistry (U.C.L.A. USA), Certified Implantologist (Manipal University)',
+             image: '/femaledoctor.png',
+          },
             ].map((doctor, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 group"
-                data-testid={`doctor-card-${index}`}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={doctor.image}
-                    alt={doctor.name}
-                    className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-heading text-2xl font-bold text-secondary mb-3 group-hover:text-primary transition-colors">
-                    {doctor.name}
-                  </h3>
-                  <p className="text-text-light leading-relaxed">{doctor.qualification}</p>
-                </div>
-              </motion.div>
+<motion.div
+  key={index}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: index * 0.1 }}
+  className="bg-white overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 group"
+  data-testid={`doctor-card-${index}`}
+>
+  {/* Image Section */}
+  <div className="relative h-80 flex items-center justify-center bg-gray-50 overflow-hidden">
+    <img
+      src={doctor.image}
+      alt={doctor.name}
+      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+
+  {/* Content Section */}
+  <div className="p-6 text-center">
+    <h3 className="font-heading text-2xl font-bold text-secondary mb-3 group-hover:text-primary transition-colors">
+      {doctor.name}
+    </h3>
+    <p className="text-text-light leading-relaxed">
+      {doctor.qualification}
+    </p>
+  </div>
+</motion.div>
             ))}
           </div>
 
