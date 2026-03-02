@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Star, CheckCircle, ChevronDown } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import DentalRobotAssistant from '../components/DentalRobotAssistant';
 
-// ===== ANIMATED COUNTER (unchanged logic) =====
+// ===== ANIMATED COUNTER =====
 const AnimatedCounter = ({ end, duration = 2, suffix = '' }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -85,7 +86,6 @@ const Home = () => {
     { title: 'Digital Records', description: 'Secure digital health records accessible anytime, anywhere.', icon: '📱', delay: 0.7 },
   ];
 
-  // Auto-rotate testimonials
   useEffect(() => {
     const interval = setInterval(() => setActiveTestimonial(p => (p + 1) % 3), 4000);
     return () => clearInterval(interval);
@@ -96,31 +96,20 @@ const Home = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section ref={heroRef} className="relative min-h-screen py-20 md:py-0 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-accent via-white to-white overflow-hidden flex items-center">
-
-        {/* Rich backgrounds */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_30%_40%,rgba(76,175,80,0.1),transparent)]" />
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(circle, rgba(76,175,80,0.12) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-        {/* Morphing blobs */}
         <MorphBlob className="w-[700px] h-[700px] bg-primary/6 -top-60 -right-60" duration={12} />
         <MorphBlob className="w-[400px] h-[400px] bg-emerald-200/15 bottom-0 -left-40" duration={9} delay={2} />
         <MorphBlob className="w-[300px] h-[300px] bg-green-100/20 top-1/3 right-1/3" duration={10} delay={4} />
 
-        {/* Floating particles */}
         {[...Array(14)].map((_, i) => (
           <Particle key={i} delay={i * 0.4} x={Math.random() * 100} y={Math.random() * 100} size={3 + Math.random() * 8} />
         ))}
 
         <motion.div style={{ y: heroY }} className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-
-            {/* LEFT CONTENT */}
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Floating badge */}
+            <motion.div initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.5, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -131,7 +120,6 @@ const Home = () => {
                 Mumbai's Most Trusted Dental Clinic
               </motion.div>
 
-              {/* Heading */}
               <div className="overflow-hidden mb-2">
                 <motion.h1
                   initial={{ y: 80, opacity: 0 }}
@@ -144,11 +132,7 @@ const Home = () => {
                 </motion.h1>
               </div>
               <div className="overflow-hidden mb-6">
-                <motion.div
-                  initial={{ y: 80, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                >
+                <motion.div initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}>
                   <span
                     className="font-heading text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-primary via-emerald-400 to-green-600 bg-clip-text text-transparent"
                     style={{ backgroundSize: '200% auto', animation: 'gradientShift 4s linear infinite' }}
@@ -158,52 +142,25 @@ const Home = () => {
                 </motion.div>
               </div>
 
-              {/* Star + tagline */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="flex items-center gap-3 mb-6"
-              >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }} className="flex items-center gap-3 mb-6">
                 <StarRow />
                 <span className="text-lg font-heading font-bold text-primary">Your Smile, Our Goal!</span>
               </motion.div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.9 }}
-                className="text-lg md:text-xl leading-relaxed text-text-light mb-8 max-w-lg"
-              >
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.9 }} className="text-lg md:text-xl leading-relaxed text-text-light mb-8 max-w-lg">
                 A healthy smile begins with healthy teeth. At Dentis3Care, you get all advanced dental services: Smile Design, Root Canal Treatment, Implants, Whitening.
               </motion.p>
 
-              {/* Trust badges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.9 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8"
-              >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.9 }} className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
                 {['ADA Accredited', '15,000+ Happy Patients', 'Same-Day Emergency Care'].map((badge, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-green-50 rounded-xl px-3 py-2.5 shadow-sm"
-                  >
+                  <motion.div key={i} whileHover={{ scale: 1.05, y: -2 }} className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-green-50 rounded-xl px-3 py-2.5 shadow-sm">
                     <CheckCircle className="text-primary flex-shrink-0" size={16} />
                     <span className="text-xs font-semibold text-secondary">{badge}</span>
                   </motion.div>
                 ))}
               </motion.div>
 
-              {/* CTA buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.9 }}
-                className="flex flex-wrap gap-4"
-              >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.9 }} className="flex flex-wrap gap-4">
                 <Link to="/contact" data-testid="book-appointment-button">
                   <motion.div
                     whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(76,175,80,0.4)' }}
@@ -229,7 +186,7 @@ const Home = () => {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT: 3D Exploded Tooth (unchanged animation logic, enhanced styling) */}
+            {/* RIGHT: 3D Exploded Tooth */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -237,42 +194,15 @@ const Home = () => {
               data-testid="hero-animation"
               className="relative h-[520px] flex items-center justify-center"
             >
-              {/* Glow backdrop */}
-              <motion.div
-                animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute w-72 h-72 rounded-full bg-primary/10 blur-3xl"
-              />
-
-              {/* Rotating ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                className="absolute w-80 h-80 rounded-full border border-dashed border-primary/20"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute w-60 h-60 rounded-full border border-primary/10"
-                style={{ borderStyle: 'dotted' }}
-              />
+              <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }} className="absolute w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: 'linear' }} className="absolute w-80 h-80 rounded-full border border-dashed border-primary/20" />
+              <motion.div animate={{ rotate: -360 }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} className="absolute w-60 h-60 rounded-full border border-primary/10" style={{ borderStyle: 'dotted' }} />
 
               <div className="relative w-full h-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
-                <motion.div
-                  className="absolute inset-0 rounded-3xl"
-                  style={{ margin: '20px', background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(232,245,233,0.7) 100%)', backdropFilter: 'blur(20px)', boxShadow: '0 30px 80px rgba(76,175,80,0.15), inset 0 1px 0 rgba(255,255,255,0.8)' }}
-                />
-
-                {/* Corner decorations */}
+                <motion.div className="absolute inset-0 rounded-3xl" style={{ margin: '20px', background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(232,245,233,0.7) 100%)', backdropFilter: 'blur(20px)', boxShadow: '0 30px 80px rgba(76,175,80,0.15), inset 0 1px 0 rgba(255,255,255,0.8)' }} />
                 {['top-8 left-8', 'top-8 right-8', 'bottom-8 left-8', 'bottom-8 right-8'].map((pos, i) => (
-                  <motion.div
-                    key={i}
-                    className={`absolute ${pos} w-3 h-3 rounded-full bg-primary/30`}
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.7, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-                  />
+                  <motion.div key={i} className={`absolute ${pos} w-3 h-3 rounded-full bg-primary/30`} animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }} />
                 ))}
-
                 <div className="relative w-full h-full flex items-center justify-center p-8">
                   <div className="tooth-exploded-container">
                     {[
@@ -285,10 +215,7 @@ const Home = () => {
                     ].map(({ cls, label, yVals, bg, shadow, delay, scale: doScale }) => (
                       <motion.div
                         key={cls}
-                        animate={doScale
-                          ? { y: yVals, scale: [1, 1.05, 1], rotateY: [0, 5, 0] }
-                          : { y: yVals, rotateY: [0, 15, 0] }
-                        }
+                        animate={doScale ? { y: yVals, scale: [1, 1.05, 1], rotateY: [0, 5, 0] } : { y: yVals, rotateY: [0, 15, 0] }}
                         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', times: [0, 0.3, 1], delay }}
                         className={`tooth-layer ${cls}`}
                       >
@@ -300,19 +227,13 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Floating info pills */}
               {[
-               { text: '🦷 Painless', pos: 'top-6 right-4' },
-               { text: '✨ Advanced', pos: 'bottom-16 right-2' },
-               { text: '💚 Certified', pos: 'top-8 left-2' },
-               { text: '✈️ Nearest To Airport', pos: 'bottom-8 left-2' },
+                { text: '🦷 Painless', pos: 'top-6 right-4' },
+                { text: '✨ Advanced', pos: 'bottom-16 right-2' },
+                { text: '💚 Certified', pos: 'top-8 left-2' },
+                { text: '✈️ Nearest To Airport', pos: 'bottom-8 left-2' },
               ].map(({ text, pos }, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute ${pos} bg-white/90 backdrop-blur-sm text-secondary text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg border border-green-50`}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.8, ease: 'easeInOut' }}
-                >
+                <motion.div key={i} className={`absolute ${pos} bg-white/90 backdrop-blur-sm text-secondary text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg border border-green-50`} animate={{ y: [0, -8, 0] }} transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.8, ease: 'easeInOut' }}>
                   {text}
                 </motion.div>
               ))}
@@ -320,19 +241,12 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-primary/60"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-primary/60">
           <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
             <ChevronDown size={20} />
           </motion.div>
         </motion.div>
 
-        {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 text-white">
             <path d="M0,0V46.29c47.79,22,103.59,29.05,158,17C230,45,284,0,339,0s108,45,162,63.29c54,18.34,108,0,162-17.29C717,28,771,28,825,46.29c54,18.34,108,0,162-17.29C1041,11,1095,11,1149,28.29V0Z" fill="currentColor" />
@@ -361,25 +275,148 @@ const Home = () => {
                 className="relative bg-white border border-green-50 rounded-2xl p-6 text-center shadow-sm overflow-hidden group transition-all duration-300"
               >
                 <MorphBlob className="w-32 h-32 bg-primary/5 -top-8 -right-8 opacity-0 group-hover:opacity-100 transition-opacity" duration={5} />
-                <motion.div
-                  className="text-3xl mb-2"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2 + index * 0.5, repeat: Infinity }}
-                >
-                  {stat.emoji}
-                </motion.div>
+                <motion.div className="text-3xl mb-2" animate={{ y: [0, -4, 0] }} transition={{ duration: 2 + index * 0.5, repeat: Infinity }}>{stat.emoji}</motion.div>
                 <div className="text-3xl md:text-4xl font-extrabold text-primary font-heading mb-1">
                   <AnimatedCounter end={stat.number} suffix={stat.suffix} />
                 </div>
                 <div className="text-text-light font-semibold text-sm">{stat.label}</div>
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-emerald-400 rounded-b-2xl"
-                />
+                <motion.div initial={{ width: 0 }} whileHover={{ width: '100%' }} transition={{ duration: 0.4 }} className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-emerald-400 rounded-b-2xl" />
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== AI ASSISTANT SECTION ===== */}
+      <section className="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-[#f0fbf4] via-white to-[#edf8f2] relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(circle, rgba(76,175,80,0.1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <MorphBlob className="w-96 h-96 bg-emerald-100/40 -top-24 -left-24" duration={14} />
+        <MorphBlob className="w-72 h-72 bg-green-100/30 -bottom-16 -right-16" duration={10} delay={3} />
+
+        <div className="container mx-auto relative z-10">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block bg-white text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-4 shadow-sm border border-green-100"
+            >
+              Powered by AI
+            </motion.span>
+            <h2 className="font-heading text-3xl md:text-5xl font-bold text-secondary mb-4">
+              Meet{' '}
+              <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
+                D3 — Your AI Dental Assistant
+              </span>
+            </h2>
+            <p className="text-lg text-text-light max-w-2xl mx-auto">
+              Available 24/7, D3 answers your questions, helps you book appointments, and guides you through your dental journey with intelligent, caring support.
+            </p>
+          </motion.div>
+
+          {/* Two-column layout: Robot left, features right */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+            {/* Left — Robot */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex justify-center"
+            >
+              {/* Decorative glow ring behind robot */}
+              <div className="relative">
+                <div className="absolute inset-0 -m-8 rounded-full bg-gradient-to-br from-emerald-100/60 to-green-50/40 blur-2xl" />
+                <DentalRobotAssistant />
+              </div>
+            </motion.div>
+
+            {/* Right — AI feature highlights */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              className="flex flex-col gap-6"
+            >
+              {[
+                {
+                  icon: '🤖',
+                  title: 'AI-Powered Consultations',
+                  desc: 'D3 uses advanced natural language processing to understand your dental concerns and provide instant, accurate guidance.',
+                  color: 'from-emerald-50 to-white',
+                },
+                {
+                  icon: '📅',
+                  title: 'Instant Appointment Booking',
+                  desc: 'Skip the phone queue. D3 checks real-time availability and books your slot in seconds — day or night.',
+                  color: 'from-green-50 to-white',
+                },
+                {
+                  icon: '🔬',
+                  title: 'Smart Diagnostics Assistant',
+                  desc: 'Describe your symptoms and D3 will help identify potential issues and recommend the right specialist for you.',
+                  color: 'from-teal-50 to-white',
+                },
+                {
+                  icon: '💬',
+                  title: '24/7 Always Available',
+                  desc: 'Whether it\'s 3 AM or a holiday, D3 is always online — ready to help, reassure, and guide you.',
+                  color: 'from-emerald-50 to-white',
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ x: 6, boxShadow: '0 12px 30px rgba(76,175,80,0.12)' }}
+                  className={`flex items-start gap-4 bg-gradient-to-r ${item.color} border border-green-100 rounded-2xl p-5 shadow-sm transition-all duration-300 group`}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-white rounded-xl shadow-sm border border-green-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-secondary text-base mb-1 group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-text-light text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="mt-2"
+              >
+                <Link to="/contact">
+                  <motion.div
+                    whileHover={{ scale: 1.04, boxShadow: '0 16px 40px rgba(76,175,80,0.3)' }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-7 py-3.5 font-semibold text-base shadow-md transition-all duration-300 group relative overflow-hidden"
+                  >
+                    <motion.div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="relative z-10">Chat with D3 Now</span>
+                    <motion.span className="relative z-10" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                      <ArrowRight size={16} />
+                    </motion.span>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -390,18 +427,8 @@ const Home = () => {
         <MorphBlob className="w-72 h-72 bg-emerald-200/15 -bottom-16 -right-16" duration={9} delay={3} />
 
         <div className="container mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-block bg-white text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-4 shadow-sm"
-            >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <motion.span initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-block bg-white text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-4 shadow-sm">
               Our Advantages
             </motion.span>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-secondary">
@@ -425,23 +452,10 @@ const Home = () => {
                 data-testid={`feature-card-${index}`}
               >
                 <MorphBlob className="w-28 h-28 bg-primary/5 -top-6 -right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500" duration={5} />
-                <motion.div
-                  className="text-4xl mb-4 relative z-10"
-                  whileHover={{ rotate: [0, -15, 15, 0], scale: 1.3 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {feature.icon}
-                </motion.div>
-                <h3 className="font-heading text-base font-bold text-secondary mb-2 group-hover:text-primary transition-colors relative z-10">
-                  {feature.title}
-                </h3>
+                <motion.div className="text-4xl mb-4 relative z-10" whileHover={{ rotate: [0, -15, 15, 0], scale: 1.3 }} transition={{ duration: 0.5 }}>{feature.icon}</motion.div>
+                <h3 className="font-heading text-base font-bold text-secondary mb-2 group-hover:text-primary transition-colors relative z-10">{feature.title}</h3>
                 <p className="text-text-light text-sm leading-relaxed relative z-10">{feature.description}</p>
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-emerald-400"
-                />
+                <motion.div initial={{ width: 0 }} whileHover={{ width: '100%' }} transition={{ duration: 0.4 }} className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-emerald-400" />
               </motion.div>
             ))}
           </div>
@@ -453,29 +467,14 @@ const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(76,175,80,0.05),transparent)]" />
 
         <div className="container mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-block bg-accent text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-4"
-            >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <motion.span initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-block bg-accent text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
               Real Stories
             </motion.span>
-            <h2 className="font-heading text-3xl md:text-5xl font-bold text-secondary mb-4">
-              What Our Patients Say
-            </h2>
-            <p className="text-lg text-text-light max-w-xl mx-auto">
-              Real stories from happy patients. Click to watch their testimonials on Instagram!
-            </p>
+            <h2 className="font-heading text-3xl md:text-5xl font-bold text-secondary mb-4">What Our Patients Say</h2>
+            <p className="text-lg text-text-light max-w-xl mx-auto">Real stories from happy patients. Click to watch their testimonials on Instagram!</p>
           </motion.div>
 
-          {/* Featured testimonial */}
           <div className="max-w-5xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -488,26 +487,15 @@ const Home = () => {
               >
                 <MorphBlob className="w-48 h-48 bg-primary/8 -top-12 -right-12" duration={7} />
                 <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="flex-shrink-0 relative"
-                  >
+                  <motion.div whileHover={{ scale: 1.05 }} className="flex-shrink-0 relative">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
                       <img src={testimonials[activeTestimonial].image} alt={testimonials[activeTestimonial].name} className="w-full h-full object-cover" />
                     </div>
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute -bottom-1 -right-1 w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs shadow-md"
-                    >
-                      ✓
-                    </motion.div>
+                    <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }} className="absolute -bottom-1 -right-1 w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs shadow-md">✓</motion.div>
                   </motion.div>
                   <div className="text-center md:text-left">
                     <StarRow />
-                    <p className="text-lg md:text-xl text-secondary font-medium mt-3 mb-3 italic">
-                      "{testimonials[activeTestimonial].review}"
-                    </p>
+                    <p className="text-lg md:text-xl text-secondary font-medium mt-3 mb-3 italic">"{testimonials[activeTestimonial].review}"</p>
                     <p className="text-primary font-bold text-lg">{testimonials[activeTestimonial].name}</p>
                     <p className="text-text-light text-sm">Verified Patient</p>
                   </div>
@@ -515,7 +503,6 @@ const Home = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Testimonial grid */}
             <div className="grid md:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
                 <motion.a
@@ -534,41 +521,14 @@ const Home = () => {
                 >
                   <div className="relative h-72">
                     <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
-
-                    {/* Active indicator */}
                     {activeTestimonial === index && (
-                      <motion.div
-                        layoutId="activeTestimonial"
-                        className="absolute inset-0 ring-4 ring-primary ring-inset rounded-2xl"
-                      />
+                      <motion.div layoutId="activeTestimonial" className="absolute inset-0 ring-4 ring-primary ring-inset rounded-2xl" />
                     )}
-
-                    {/* Overlay */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300"
-                    />
-
-                    {/* Play button */}
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileHover={{ scale: 1, opacity: 1 }}
-                      transition={{ type: 'spring', bounce: 0.4 }}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-2xl">
-                        <span className="text-2xl ml-1">▶</span>
-                      </div>
+                    <motion.div initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300" />
+                    <motion.div initial={{ scale: 0, opacity: 0 }} whileHover={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', bounce: 0.4 }} className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-2xl"><span className="text-2xl ml-1">▶</span></div>
                     </motion.div>
-
-                    {/* Name slide up */}
-                    <motion.div
-                      initial={{ y: '100%' }}
-                      whileHover={{ y: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute bottom-0 left-0 right-0 p-5"
-                    >
+                    <motion.div initial={{ y: '100%' }} whileHover={{ y: 0 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} className="absolute bottom-0 left-0 right-0 p-5">
                       <h3 className="font-heading text-white font-bold text-lg">{testimonial.name}</h3>
                       <p className="text-white/80 text-xs">Watch on Instagram →</p>
                     </motion.div>
@@ -577,7 +537,6 @@ const Home = () => {
               ))}
             </div>
 
-            {/* Dot indicators */}
             <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, i) => (
                 <motion.button
@@ -597,18 +556,9 @@ const Home = () => {
       <section className="py-16 md:py-20 px-6 md:px-12 lg:px-24 bg-accent relative overflow-hidden">
         <MorphBlob className="w-80 h-80 bg-primary/8 -top-20 -right-20" duration={9} />
         <div className="container mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4">
-              Ready for Your Best Smile?
-            </h2>
-            <p className="text-text-light text-lg mb-8 max-w-xl mx-auto">
-              Join 15,000+ happy patients. Book your consultation today — it's quick and easy.
-            </p>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4">Ready for Your Best Smile?</h2>
+            <p className="text-text-light text-lg mb-8 max-w-xl mx-auto">Join 15,000+ happy patients. Book your consultation today — it's quick and easy.</p>
             <Link to="/contact">
               <motion.div
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(76,175,80,0.4)' }}
