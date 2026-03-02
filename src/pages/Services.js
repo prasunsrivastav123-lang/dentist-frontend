@@ -261,86 +261,109 @@ const Services = () => {
       </section>
 
       {/* ===== ANIMATED TOOTH SECTION ===== */}
-      <section className="py-16 px-6 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-accent/30 to-white" />
-        <div className="container mx-auto flex items-center justify-center relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
-            data-testid="services-animation"
-            className="relative flex items-center justify-center"
-          >
-            {/* Outer ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-52 h-52 rounded-full border-2 border-dashed border-primary/20"
-            />
-            {/* Middle ring */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-40 h-40 rounded-full border border-primary/15"
-              style={{ borderStyle: 'dotted' }}
-            />
+<section className="relative py-20 px-6 overflow-hidden">
 
-            {/* Orbital dots */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-3 h-3 rounded-full bg-primary/40"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8 + i, repeat: Infinity, ease: 'linear' }}
-                style={{
-                  transformOrigin: `0 ${-80 - i * 5}px`,
-                }}
-              />
-            ))}
+  {/* ===== Background Video ===== */}
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/Dentalvid.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-            {/* Center tooth */}
-            <motion.div
-              animate={{ y: [0, -15, 0], rotate: [0, 3, -3, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative z-10 w-28 h-28 bg-gradient-to-br from-white via-accent to-green-50 rounded-2xl shadow-2xl flex items-center justify-center"
-              style={{ boxShadow: '0 20px 60px rgba(76,175,80,0.3)' }}
-            >
-              <span className="text-6xl">🦷</span>
-              {/* Glow */}
-              <motion.div
-                animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 rounded-2xl bg-primary/10"
-              />
-            </motion.div>
+  {/* ===== Dark + Gradient Overlay (Important for visibility) ===== */}
+  <div className="absolute inset-0 bg-black/40 z-0" />
+  <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-accent/30 to-white/20 z-0" />
 
-            {/* Shadow */}
-            <motion.div
-              animate={{ scaleX: [1, 1.4, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-24 h-4 bg-primary rounded-full blur-xl"
-            />
+  {/* ===== Content Container ===== */}
+  <div className="relative z-10 container mx-auto flex items-center justify-center">
 
-            {/* Floating sparkles */}
-            {['✦', '★', '✧', '◆'].map((s, i) => (
-              <motion.span
-                key={i}
-                className="absolute text-primary font-bold select-none"
-                style={{
-                  fontSize: 12 + i * 4,
-                  top: `${[10, 75, 20, 65][i]}%`,
-                  left: `${[80, 85, 5, 8][i]}%`,
-                }}
-                animate={{ scale: [0, 1, 0], opacity: [0, 1, 0], rotate: [0, 180] }}
-                transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-              >
-                {s}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
+      data-testid="services-animation"
+      className="relative flex items-center justify-center"
+    >
+
+      {/* Outer ring */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        className="absolute w-52 h-52 rounded-full border-2 border-dashed border-white/40"
+      />
+
+      {/* Middle ring */}
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+        className="absolute w-40 h-40 rounded-full border border-white/30"
+        style={{ borderStyle: 'dotted' }}
+      />
+
+      {/* Orbital dots */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-3 h-3 rounded-full bg-white/60"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8 + i, repeat: Infinity, ease: 'linear' }}
+          style={{
+            transformOrigin: `0 ${-80 - i * 5}px`,
+          }}
+        />
+      ))}
+
+      {/* Center tooth */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 3, -3, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+        className="relative z-10 w-28 h-28 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
+        style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4)' }}
+      >
+        <span className="text-6xl">🦷</span>
+
+        {/* Glow */}
+        <motion.div
+          animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 rounded-2xl bg-white/30 blur-xl"
+        />
+      </motion.div>
+
+      {/* Shadow */}
+      <motion.div
+        animate={{ scaleX: [1, 1.4, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full blur-xl"
+      />
+
+      {/* Floating sparkles */}
+      {['✦', '★', '✧', '◆'].map((s, i) => (
+        <motion.span
+          key={i}
+          className="absolute text-white font-bold select-none"
+          style={{
+            fontSize: 14 + i * 4,
+            top: `${[10, 75, 20, 65][i]}%`,
+            left: `${[80, 85, 5, 8][i]}%`,
+          }}
+          animate={{ scale: [0, 1, 0], opacity: [0, 1, 0], rotate: [0, 180] }}
+          transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+        >
+          {s}
+        </motion.span>
+      ))}
+
+    </motion.div>
+
+  </div>
+</section>
 
       {/* ===== SERVICES GRID ===== */}
       <section id="services" className="py-16 md:py-28 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
