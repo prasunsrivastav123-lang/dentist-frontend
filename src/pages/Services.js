@@ -261,7 +261,7 @@ const Services = () => {
       </section>
 
       {/* ===== ANIMATED TOOTH SECTION ===== */}
-<section className="relative py-20 px-6 overflow-hidden">
+<section className="relative min-h-[600px] md:min-h-[750px] py-20 px-6 overflow-hidden flex items-center">
 
   {/* ===== Background Video ===== */}
   <video
